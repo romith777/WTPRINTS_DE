@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTPRINTS-DE</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <script>
+        const loginToken = localStorage.getItem('logintoken');        
+        if(loginToken === 'false' || loginToken === null){
+            window.location.href = "../login/login.html";
+        }
+    </script>
+</body>
+</html>

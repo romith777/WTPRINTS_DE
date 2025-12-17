@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login-WTP</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../home/index.css">
+  <!-- fonts... -->
+</head>
+<body>
+  <div class="loader-wrapper">
+    <div class="loader">
+      <span class="loader-inner"><span>WTPRINTS<div class="loader-in-line"></div></span></span>
+    </div>
+  </div>
+
+  <div class="new-body filter-blur">
+    <header class="navtotal" style="height: 70px;position: relative;">
+      <div class="navbar">
+        <a href="index.html">
+          <div class="nav-logo"><h1 class="nav-txt">WTPRINTS</h1></div>
+        </a>
+        <div class="nav-components">
+          <div><p style="cursor: pointer;">MEN</p></div>
+          <div><p style="cursor: pointer;">WOMEN</p></div>
+          <div><p style="cursor: pointer;">OTHER</p></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="new-body-information">
+      <div class="collab-image-box">
+        <img class="collab-image" src="assets/onepiece-collab.jpg" alt="collab">
+      </div>
+
+      <div class="information">
+        <div class="login-signup-change">
+          <div class="login-signup-content">
+            <div class="slider-change"></div>
+
+            <!-- LOGIN BOX -->
+            <div class="login-box" style="display: block;">
+              <div style="display:flex;flex-direction:column;gap:20px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div><p style="font-size:25px;">Login</p></div>
+                  <div><p style="color:grey;font-size:20px;">Login to resume your journey.</p></div>
+                </div>
+
+                <div id="login-message" class="signup-message" style="display:none;">
+                    Signup successful! Please login.
+                </div>
+
+                <form id="loginForm" action="/login" method="POST" class="input-holder" style="gap:20px;">
+                  <input name="username" type="text" placeholder="UserName" required>
+                  <input name="password" type="password" placeholder="Password" required>
+                  <button class="login-button" type="submit">Login</button>
+                </form>
+              </div>
+
+              <div style="display:flex;justify-content:flex-start;gap:10px;margin-top:50px;">
+                <hr style="height:0.5px;width:14.3vw;border-style:solid;margin-top:4px;background-color:black;">
+                <p>OR</p>
+                <hr style="height:0.5px;width:14.3vw;border-style:solid;margin-top:4px;background-color:black;">
+              </div>
+              <div style="margin-top:40px;">
+                <button class="login-button in-login-signup-button">Signup</button>
+              </div>
+            </div>
+
+            <!-- SIGNUP BOX -->
+            <div class="signup-box" style="display: none;">
+              <div style="display:flex;flex-direction:column;gap:20px;">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div><p style="font-size:25px;">Signup</p></div>
+                  <div><p style="color:grey;font-size:20px;">Join us to be a part of our family.</p></div>
+                </div>
+
+                <div id="signup-message" class="signup-message" style="display:none;">
+                  Message here
+                </div>
+
+                <!-- Step 1: Request OTP -->
+                <form id="requestOtpForm" class="input-holder" style="gap:20px;">
+                  <input name="username" type="text" placeholder="Name" required>
+                  <input name="email" type="email" placeholder="Email" required>
+                  <input name="password" type="password" placeholder="Password" required>
+                  <button class="login-button" type="submit">Send OTP</button>
+                </form>
+
+                <!-- Step 2: Verify OTP (hidden initially) -->
+                <form id="verifyOtpForm" class="input-holder" style="gap:20px;display:none;">
+                  <div style="text-align:center;">
+                    <p style="color:#666;">We've sent a verification code to your email</p>
+                  </div>
+                  <input name="otp" type="text" placeholder="Enter 6-digit OTP" maxlength="6" required pattern="[0-9]{6}">
+                  <button class="login-button" type="submit">Verify & Signup</button>
+                  <button class="login-button" type="button" id="resendOtpBtn" style="background:white;color:#ee0652;border:2px solid #ee0652;">Resend OTP</button>
+                  <button class="login-button" type="button" id="backToFormBtn" style="background:white;color:#666;border:2px solid #666;">Back to Form</button>
+                </form>
+              </div>
+
+              <div style="display:flex;justify-content:flex-start;gap:10px;margin-top:50px;">
+                <hr style="height:0.5px;width:14.3vw;border-style:solid;margin-top:4px;background-color:black;">
+                <p>OR</p>
+                <hr style="height:0.5px;width:14.3vw;border-style:solid;margin-top:4px;background-color:black;">
+              </div>
+              <div style="margin-top:40px;">
+                <button class="login-button in-signup-login-button">Login</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
