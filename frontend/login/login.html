@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>WTP-S LOGIN</title>
   <link rel="stylesheet" href="login.css">
+  <link rel="icon" type="image/x-icon" href="../../assets/logo1.png">
 </head>
 <body>
   <div class="new-body-information">
@@ -24,8 +25,8 @@
           </div>
 
           <form id="loginForm" action="/login" method="POST" class="input-holder" style="gap:20px;">
-            <input name="username" type="text" placeholder="UserName" required>
-            <input name="password" type="password" placeholder="Password" required>
+            <input id="username" name="username" type="text" placeholder="UserName" required>
+            <input id="password" name="password" type="password" placeholder="Password" required>
             <button class="login-button" type="submit">Login</button>
           </form>
         </div>
@@ -47,10 +48,10 @@
           </div>
 
           <div id="signup-message" class="signup-message" style="display:none;">
-              Signup successful! Please login.
+            Signup successful! Please login.
           </div>
 
-          <form id="loginForm" action="/login" method="POST" class="input-holder" style="gap:20px;">
+          <form id="signupForm" action="/signup" method="POST" class="input-holder" style="gap:20px;">
             <input name="username" type="text" placeholder="UserName" required>
             <input name="email" type="email" placeholder="Email" required>
             <input name="password" type="password" placeholder="Password" required>

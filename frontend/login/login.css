@@ -134,6 +134,17 @@ hr {
     flex: 1;
 }
 
+.signup-message{
+    background-color: #339249;
+    color: white;
+    font-size: large;
+    text-align: center;
+    align-content: center;
+    height: 50px;
+    border-radius: 10px;
+    font-family: "League Spartan", sans-serif;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .new-body-information{
