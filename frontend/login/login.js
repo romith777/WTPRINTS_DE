@@ -12,24 +12,37 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     urlParams = new URLSearchParams(window.location.search);
-    if(urlParams.get("signup") == "success" ){
-        document.querySelector('.signup-box').style.display = 'none';
-        document.querySelector('.login-box').style.display = 'block';
-        document.getElementById('login-message').style.display = 'block';
-        setTimeout(()=>{
-            document.getElementById('login-message').style.display = 'none';
-        },4000);
-    }
-    else if(urlParams.get("signup") == "exists"){
-        const signupMessage = document.getElementById('signup-message'); 
-        signupMessage.style.display = 'block';
-        signupMessage.innerHTML = "Email or Username already exists";
-        signupMessage.style.backgroundColor = 'rgb(238, 82, 82)'
-        setTimeout(()=>{
-            signupMessage.style.display = 'none';
-        },4000);
-    }
 
+    if(urlParams.get("signup")){
+        if(urlParams.get("signup") == "success" ){
+            document.getElementById('login-message').style.display = 'block';
+            setTimeout(()=>{
+                document.getElementById('login-message').style.display = 'none';
+            },4000);
+        }
+        else if(urlParams.get("signup") == "exists"){
+            document.querySelector('.signup-box').style.display = 'block';
+            document.querySelector('.login-box').style.display = 'none';
+            const signupMessage = document.getElementById('signup-message'); 
+            signupMessage.style.display = 'block';
+            signupMessage.innerHTML = "Email or Username already exists";
+            signupMessage.style.backgroundColor = 'rgb(238, 82, 82)';
+            setTimeout(()=>{
+                signupMessage.style.display = 'none';
+            },4000);
+        }
+    }   
+    else if(urlParams.get("login")){
+        if(urlParams.get("login") == "nouser" ){
+            const loginMessage = document.getElementById('login-message'); 
+            loginMessage.style.backgroundColor = 'rgb(238, 82, 82)';
+            loginMessage.style.display = 'block';
+            loginMessage.innerHTML = "Invalid Username or Password";
+            setTimeout(()=>{
+                loginMessage.style.display = 'none';
+            },4000);
+        }
+    }
     const loginForm = document.getElementById('loginForm');
     loginForm.addEventListener('submit', async (e)=>{
         e.preventDefault();
