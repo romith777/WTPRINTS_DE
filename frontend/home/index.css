@@ -272,52 +272,11 @@ input:focus{
     background-color: #ee0652;
     transition: all 0.3s;
     border-radius: 2px;
-}
-
-/* Nav dropdown */
-.nav-drop-down{
-    overflow: hidden;
-    border-top: 1px solid #e0e0e0;
-    transition: max-height 0.3s ease;
-}
-
-.nav-drop-down ul{
-    overflow: hidden;
-    position: relative;
-    list-style-type: none;
-    font-family: "Kanit", sans-serif;
-    display: flex;
-    justify-content: center;
-    gap: clamp(20px, 4vw, 50px);
-    padding: 15px 20px;
-    flex-wrap: wrap;
-}
-
-.nav-drop-down ul li{
-    position: relative;
-    width: max-content;
-    cursor: pointer;
-    font-size: clamp(13px, 1.5vw, 15px);
-}
-
-.nav-drop-down ul li::after{
-    content: '';
-    position: absolute;
-    background-color: #ee0652;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    transition: width 0.3s;
-}
-
-.nav-drop-down ul li:hover::after{
-    width: 100%;
-}
+}   
 
 /* Main */
 main{
-    margin-top: 120px;
+    margin-top: 150px;
     opacity: 1;
     transition: 0.2s ease-in-out;
 }
@@ -326,84 +285,152 @@ main{
     display: none;
 }
 
-/* Slider */
-.container{
+.upload-file{
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.upload-file h1{
+    font-size: clamp(24px, 4vw, 36px);
+    text-align : center;
+}
+
+#dropbox{
+    width:100%;
+    height: 400px;
+    padding: 30px 20px;
+    border:2px solid #333;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+    cursor:pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 10px;
     user-select: none;
-    padding: clamp(20px, 3vw, 40px) 0;
-    max-width: 100%;
-    margin: 0;
-    padding-left: 0;
 }
 
-.slide-wrapper{
-    position: relative;
-    width: 100%;
-    border-radius: 0;
-    overflow: hidden;
-    padding-left: clamp(15px, 3vw, 40px);
-    padding-right: clamp(15px, 3vw, 40px);
+#dropbox img{
+    width: 200px;
 }
 
-.slides{
-    gap: clamp(15px, 2vw, 30px);
+.user-collection{
+    padding: 20px 20px;
+}
+.user-collection-content{
     display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    gap: 20px;
+}
+.heading{
+    font-size: 40px;
+}
+.user-collection-content .sub-heading{
+    align-self: center;
 }
 
-.slides img{
-    -webkit-user-drag: none;
-    pointer-events: none;
-}
 
-.slides::-webkit-scrollbar{
-    display: none;
-}
-
-.slides a{
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-}
-
-.slides a img{
-    width: clamp(280px, 80vw, 450px);
-    height: clamp(308px, 88vw, 495px);
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.slides a img:hover{
-    transform: scale(1.02);
-}
-
-.slider-nav{
+/* User products card */
+.collection{
     display: flex;
-    gap: 10px;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+    flex-direction: column;
+    gap: 30px;
 }
-
-.slider-nav div{
-    height: 10px;
-    width: 10px;
-    background-color: white;
-    opacity: 0.5;
-    border-radius: 50%;
-    cursor: pointer;
+.loading-text{
+    color: #ee0652;
+    font-size: clamp(35px, 4vw, 50px);
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+}
+.sub-collection{
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    padding: 20px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 30px);
+    flex-wrap: wrap;
+}
+.browsing-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 40px);
     transition: all 0.3s ease;
 }
-
-.slider-nav div:hover{
-    opacity: 1;
-    transform: scale(1.2);
+.browse-card{
+    font-size: 14px;
+    height: fit-content;
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+    cursor: pointer;
 }
+
+.browse-card:hover{
+    box-shadow: 0 8px 25px rgba(238, 6, 82, 0.15);
+    border-color: #ee0652;
+}
+
+.browse-card-img{
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+}
+
+.browse-card-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.browse-card:hover .browse-card-img img{
+    transform: none;
+}
+
+.browse-card-information{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+}
+
+.browse-card-information-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.browse-card-information-area-text{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.browse-card-information-text{
+    font-family: "League Spartan", sans-serif;
+    color: #666;
+    line-height: 1.4;
+}
+
+.browse-card-information-text:first-child{
+    color: #333;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.browse-card-information-price{
+    font-weight: 600;
+    color: #ee0652;
+    font-size: 18px;
+}
+
+
 
 /* Section headers */
 section h1{
@@ -414,14 +441,7 @@ section h1{
 }
 
 /* Browsing section */
-.browsing-section{
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: clamp(20px, 3vw, 40px);
-    max-width: 1400px;
-    margin: 0 auto;
-}
+
 
 .browsing-section-tees{
     border: 1px solid #e0e0e0;
@@ -648,16 +668,9 @@ section h1{
 }
 
 /* Responsive Design */
-@media (min-width: 1024px) {
-    .slides a img{
-        width: 30vw;
-        height: 33vw;
-        max-width: 450px;
-        max-height: 495px;
-    }
-
-    .browsing-section {
-        grid-template-columns: repeat(4, 1fr);
+@media (max-width: 1500px) {
+    .browsing-section{
+        justify-content: center;
     }
 }
 
@@ -698,9 +711,6 @@ section h1{
         height: 94vw;
     }
 
-    .browsing-section{
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
 
     .footer-content{
         flex-direction: column;
@@ -715,17 +725,8 @@ section h1{
     }
 }
 
-@media (max-width: 480px) {
-    .nav-components > a:first-child{
-        display: none;
-    }
-
+@media (max-width: 1106px) {
     .browsing-section{
-        grid-template-columns: 1fr;
-    }
-
-    .slides a img{
-        width: 90vw;
-        height: 99vw;
+        gap: 10px;
     }
 }

@@ -1,6 +1,10 @@
 const API_URI = window.location.origin;
 
 document.addEventListener('DOMContentLoaded',()=>{
+    if(localStorage.getItem('loginToken')){
+        window.location.href = '../home/home.html';
+    }
+    console.log(localStorage.getItem('loginToken'));
     document.querySelector('.in-login-signup-button').addEventListener('click',()=>{
         document.querySelector('.signup-box').style.display = 'block';
         document.querySelector('.login-box').style.display = 'none';
@@ -16,6 +20,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(urlParams.get("signup")){
         if(urlParams.get("signup") == "success" ){
             document.getElementById('login-message').style.display = 'block';
+            document.getElementById('login-message').innerHTML = "Signup successful! Please login.";
             setTimeout(()=>{
                 document.getElementById('login-message').style.display = 'none';
             },4000);
@@ -60,7 +65,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             console.log(result);
             if(result.status == "success"){
                 window.location.href = `login.html?login=success&wt_user=${result.wt_user.username}&email=${result.wt_user.email}`;
-                localStorage.setItem('logintoken', true);
+                localStorage.setItem('loginToken', true);
                 localStorage.setItem('wt_user', JSON.stringify(result.wt_user));
             }
             else if(result.status == "nouser"){

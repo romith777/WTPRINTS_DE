@@ -17,13 +17,13 @@ async function connectDB() {
     console.warn('MONGODB_URI not set in environment variables');
     return null;
   }
-
+  
   // Return cached connection if available
   if (cachedDb && mongoose.connection.readyState === 1) {
     console.log('Using cached MongoDB connection');
     return cachedDb;
   }
-
+  
   try {
     // Optimized settings for Vercel serverless
     const options = {
@@ -35,7 +35,7 @@ async function connectDB() {
       retryWrites: true,
       w: 'majority'
     };
-
+    
     await mongoose.connect(uri, options);
     cachedDb = mongoose.connection;
     console.log('MongoDB connected successfully');
@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 const User = mongoose.models.User || mongoose.model('User', userSchema);
+const Product = require('./models/productSchema.js');
 
 // Middleware
 app.use(cors());
@@ -112,6 +113,24 @@ app.post("/signup",async (req,res)=>{
   catch(err){
     console.error('Signup error:', err);
     res.status(500).json({ status: 'error' });
+  }
+});
+
+app.get('/api/products/:username',async (req,res)=>{
+  try{
+    const productsData = Product ? await Product.findOne({username : req.params.username}) : null;
+    res.json({
+      tees: productsData?.tees || [],
+      hoodies: productsData?.hoodies || [],
+      cargos: productsData?.cargos || [],
+      shirts: productsData?.shirts || [],
+      jeans: productsData?.jeans || [],
+      joggers: productsData?.joggers || []
+    })
+  }
+  catch (err){
+    console.error(err);
+    res.status(500).json({status:'error'});
   }
 });
 
