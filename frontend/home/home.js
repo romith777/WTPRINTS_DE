@@ -2,6 +2,7 @@ const API_URI = window.location.origin;
 
 
 let userProducts = [];
+let totalProducts = 0;
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(!localStorage.getItem('loginToken')){
@@ -15,25 +16,50 @@ document.addEventListener('DOMContentLoaded',()=>{
     const box=document.getElementById("dropbox");
     const inp=document.getElementById("fileinput");
 
-    box.onclick=()=>inp.click();
+    // click box → open file picker
+    box.onclick = () => inp.click();
 
-    box.ondragover=e=>{
+    // drag support
+    box.ondragover = e => e.preventDefault();
+    box.ondrop = e => {
         e.preventDefault();
-        box.style.borderColor="green";
+        handleFiles(e.dataTransfer.files);
     };
 
-    box.ondrop=e=>{
-        e.preventDefault();
-        let files=e.dataTransfer.files;
-        console.log(files);
-        box.style.borderColor="#333";
-        for(let f of files){
-            let img=document.createElement("img");
-            img.src=URL.createObjectURL(f);
-            img.style.width="80px";
-            box.appendChild(img);
+    // file selected by clicking
+    inp.addEventListener("change", e => {
+        handleFiles(e.target.files);
+    });
+
+    async function handleFiles(files){
+        if(!files || files.length === 0) return;
+
+        let imgs = [];
+
+        document.querySelector(".loader-wrapper").style.display = "flex";
+        document.querySelector(".loader-wrapper").style.justifyContent = "center";
+        document.querySelector(".filter-body").classList.add("filter-blur");
+
+        for(const f of [...files].slice(0,6)){
+            const fd = new FormData();
+            fd.append("image", f);
+
+            const res = await fetch(`${API_URI}/api/upload`, {
+                method: "POST",
+                body: fd
+            });
+
+            const data = await res.json();
+            imgs.push(data.url);
         }
-    };
+
+        document.querySelector(".loader-wrapper").style.display = "none";
+        document.querySelector(".filter-body").classList.remove("filter-blur");
+
+        localStorage.setItem("imgs", JSON.stringify(imgs));
+        window.location.href = "../view/view.html";
+    }
+
 
     function formatCurrency(priceCents){
         return (priceCents/100).toFixed(2);
@@ -42,7 +68,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     async function fetchProducts(){
         let wt_user = JSON.parse(localStorage.getItem('wt_user'));
         let username = wt_user.username ;
-        console.log(username);
+        // console.log(username);
         try{
             const response = await fetch(`${API_URI}/api/products/${username}`,{
                 method: 'GET',
@@ -54,6 +80,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             const data = await response.json();
 
             userProducts = data;
+            localStorage.setItem('userProducts',JSON.stringify(userProducts));
             console.log(userProducts);
             renderProducts();
         }
@@ -68,11 +95,12 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.querySelector(".collection .loading-text").style.display = "none";
         let innerHTML = '';
         for(let i in product){
+            totalProducts++;
             innerHTML+=`
                 <div class="browse-card">
                     <div class="browse-card-img">
                         <a href="#" style="cursor: pointer;" onclick="storeProduct('${product.id}')">
-                            <img src="${product[i].image}" alt="${product[i].name}">
+                            <img src="${product[i].image[0]}" alt="${product[i].name}">
                         </a>
                     </div>
                     <div class="browse-card-information">
@@ -97,6 +125,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(userProducts[i].length){
                 enter = true;
                 let type = userProducts[i][0].productType;
+                console.log(type);
                 innerHTML+=`
                     <div class="sub-collection">
                         <div class="sub-heading">
@@ -109,6 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 `;
             }
         }
+        localStorage.setItem('totalProducts',totalProducts);
         if(enter){
             document.querySelector(".collection").innerHTML = innerHTML;
             return;

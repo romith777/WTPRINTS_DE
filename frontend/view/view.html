@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WTP-DE Product Upload</title>
+  <link rel="stylesheet" href="../home/index.css">
+  <link rel="stylesheet" href="view.css">
+  <link rel="icon" type="image/x-icon" href="../../assets/logo1.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="loader-wrapper">
+    <div class="loader">
+      <span class="loader-inner"><span>WTPRINTS-DE<div class="loader-in-line"></div></span></span>
+    </div>
+  </div>
+  <div class="filter-blur">
+    <header class="navtotal">
+      <div class="navbar">
+        <a href="../home/home.html">
+          <div class="nav-logo">
+            <h1 class="nav-txt">WTPRINTS-DE</h1>
+          </div>
+        </a>
+        <div class="search-bar">
+          <div class="search-region">
+            <form action="" class="search-form">
+              <input type="text" placeholder="search your products" name="search" class="search-area">
+              <button type="submit" class="search-button"><img src="../../assets/search-icon.png" alt="search-icon" style="width: 100%;"></button>
+            </form>
+          </div>
+        </div>
+        <div class="nav-components">
+          <a href="../user/user.html">
+            <div>
+              <div>
+                <p style="font-size: large;">My Account</p>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div>
+              <div>
+                <p style="font-size: large;">WTCredits</p>
+              </div>
+            </div>
+          </a>
+          <a href="#">
+            <div>
+              <div>
+                <p style="font-size: large;">Contact Us</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="view-container">
+        <h1 style="text-align: center;">Add the Product to your Collection</h1>
+        <div class="view-container-box" style="margin-top: 10px;">
+          <div class="product-image">
+            <div class="image-box"></div>
+            <div class="other-images"></div>
+          </div>
+          <div class="product-data">
+            <form action="/addProduct" method="post" class="productForm">
+              <h2>Name:</h2>
+              <input type="text" placeholder="Name"name="name" id="name" value="Test Tee" required>
+              <h2>Brand Name:</h2>
+              <input type="text" id="brandName" name="brandName" readonly>
+              <div class="description-section">
+                <h2>Description:</h2>
+                <button class="ask-ai-button"><img src="../../assets/ai-logo.png"><p>Ask AI</p></button>
+              </div>
+              <textarea id="description" name="description" rows="10" cols="50" value="This is Test Tee" placeholder="Product Description (Max 400 char)" maxlength="400"></textarea>
+              <div class="price-section">
+                <h2>Prize $:</h2>
+                <input type="number" placeholder="$" id="price" name="price" value="999" required>
+              </div>
+              <div class="type-section">
+                <h2>Type:</h2>
+                <select name="type" id="type" required>
+                  <option value="tees">Tees</option>
+                  <option value="cargos">Cargos</option>
+                  <option value="hoodies">Hoodies</option>
+                  <option value="jeans">Jeans</option>
+                  <option value=""></option>
+                </select>
+              </div>
+              <button type="submit" class="product-submit">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="view.js"></script>
+</body>
+</html>

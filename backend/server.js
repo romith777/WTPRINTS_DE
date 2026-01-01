@@ -1,6 +1,11 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
+
+const multer = require('multer');
+const upload=multer({dest:"temp/"});
+
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
 const path = require('path');
@@ -45,6 +50,12 @@ async function connectDB() {
     return null;
   }
 }
+
+cloudinary.config({
+    cloudinary_url: process.env.CLOUDINARY_URL
+});
+
+module.exports=cloudinary;
 
 // Connect on startup
 connectDB();
@@ -134,7 +145,50 @@ app.get('/api/products/:username',async (req,res)=>{
   }
 });
 
-app.listen(5500, ()=>{
+app.post('/api/upload',upload.single('image'),async(req,res)=>{
+  try{
+    const result = await cloudinary.uploader.upload(req.file.path);
+    res.json({ url: result.secure_url });
+  }
+  catch (err){
+    res.status(500).json(e);
+  }
+});
+
+app.post('/api/saveProduct',async (req,res)=>{
+  const {username,arr,newPro} = req.body;
+  try{
+    let array = arr;
+    type = newPro.productType;
+    array[type].push(newPro);
+
+    if(!username) return res.status(400).json({success : false,reply : "where is the username ??"});
+    
+    const product = await Product.findOne({username});
+    
+    //create new product
+    if(!product){
+      await new Product({username, [type]: array[type]}).save();
+      return res.json({success : true})
+    }
+    
+    //update product
+    if(Product){
+      await Product.findOneAndUpdate(
+        {username},
+        {[newPro.productType]: array[newPro.productType]}
+      )
+    }
+    
+    return res.json({success : true})
+  }
+  catch (err){
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
+app.listen(5501, ()=>{
   console.log("Server running on port 5500");
 });
 

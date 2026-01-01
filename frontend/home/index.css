@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 a{
@@ -39,12 +40,13 @@ p{
 }
 
 .loader-wrapper{
+    visibility: visible;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: transparent;
     opacity: 0.95;
     z-index: 9999;
     display: flex;
@@ -339,9 +341,10 @@ main{
 }
 .loading-text{
     color: #ee0652;
-    font-size: clamp(35px, 4vw, 50px);
+    font-size: clamp(24px, 4vw, 36px);
+    text-align: center;
+    padding: clamp(50px, 10vw, 100px) 20px;
     font-family: "League Spartan", sans-serif;
-    font-weight: 700;
 }
 .sub-collection{
     box-shadow:0 10px 25px rgba(0,0,0,.15);
@@ -430,6 +433,13 @@ main{
     font-size: 18px;
 }
 
+.no-products{
+    font-size: clamp(24px, 4vw, 36px);
+    text-align: center;
+    padding: clamp(50px, 10vw, 100px) 20px;
+    color: #666;
+}
+
 
 
 /* Section headers */
@@ -491,57 +501,6 @@ section h1{
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 5px;
-}
-
-/* Login section */
-.login-to-access{
-    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-    color: white;
-    padding: clamp(40px, 8vw, 80px) 20px;
-    text-align: center;
-    margin-top: 60px;
-}
-
-.login-to-access-text{
-    padding: 15px;
-    max-width: 700px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.login-to-access h1{
-    font-size: clamp(24px, 5vw, 42px);
-    margin-bottom: 10px;
-    padding: 0;
-}
-
-.login-to-access p{
-    font-size: clamp(14px, 2vw, 16px);
-    line-height: 1.8;
-    opacity: 0.9;
-}
-
-.login-to-access-button{
-    font-weight: 1000;
-    background-color: white;
-    color: black;
-    padding: 15px 60px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    font-family: "League Spartan", sans-serif;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
-    width: 100%;
-    max-width: 700px;
-}
-
-.login-to-access-button:hover{
-    background-color: #f0f0f0;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.5);
 }
 
 /* Footer */
@@ -689,14 +648,6 @@ section h1{
         order: 2;
     }
 
-    .nav-drop-down{
-        max-height: 0;
-        transition: max-height 0.3s ease;
-    }
-
-    .nav-drop-down.open{
-        max-height: 500px;
-    }
 
     .mobile-menu-toggle{
         display: flex;
@@ -706,11 +657,9 @@ section h1{
         margin-top: 70px;
     }
 
-    .slides a img{
-        width: 85vw;
-        height: 94vw;
+    main{
+        margin-top: 150px;
     }
-
 
     .footer-content{
         flex-direction: column;
