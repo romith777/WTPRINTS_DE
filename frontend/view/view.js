@@ -2,20 +2,33 @@ API_URI = window.location.origin;
 const wt_user = JSON.parse(localStorage.getItem('wt_user'));
 if(!localStorage.getItem('loginToken'))  window.location.href = '../login/login/html';
 
-document.addEventListener('DOMContentLoaded',()=>{
-  let userProducts = JSON.parse(localStorage.getItem('userProducts'));
-  let type = "tees";
-  console.log(userProducts);
+const urlParams = new URLSearchParams(window.location.search);
+let currentProduct = null;
+let imgs;
 
+document.addEventListener('DOMContentLoaded',()=>{
+  let newProduct = urlParams.get('id') ? false : true ;
+  let prevType = urlParams.get('type') || null;
+  let productId = urlParams.get('id') || null;
+  let userProducts = JSON.parse(localStorage.getItem('userProducts'));
+  
   window.addEventListener("load", function() {
     document.querySelector(".loader-wrapper").style.display = "none";
     document.querySelector(".filter-blur").classList.remove("filter-blur");
   });
-
+  
   document.querySelector('.product-data form #brandName').value = wt_user.username;
-
-  let imgs = JSON.parse(localStorage.getItem('imgs'));
-  console.log(imgs);
+  if(!newProduct){
+    currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
+    const formdata = document.querySelector('.product-data form');
+    formdata.name.value = currentProduct.name;
+    formdata.description.value = currentProduct.about;
+    formdata.price.value = (currentProduct.priceCents)/100;
+    formdata.type.value = currentProduct.productType;
+  }
+  
+  imgs = newProduct ? JSON.parse(localStorage.getItem('imgs')) : currentProduct.image;
+  
   let a=-1;
   let html ='';
   imgs.forEach(e => {
@@ -51,8 +64,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   let productForm = document.querySelector('.productForm');
   productForm.addEventListener('submit',async(e)=>{
     e.preventDefault();
-    let type = productForm.type.value;
     let data ={
+      prevType : prevType,
+      productId : productId,
       username : wt_user.username,
       arr : userProducts,
       newPro : {
@@ -61,7 +75,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         brandName : productForm.brandName.value,
         about : productForm.description.value,
         priceCents : Math.floor(productForm.price.value*100),
-        image : imgs
+        image : imgs,
+        keyword : [productForm.name.value]
       }
     }
 
@@ -75,7 +90,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     if(result.success === true ){
       alert('Product saved');
-      window.location.href = '../home/home.html';
+      localStorage.removeItem('currentProduct');
+      window.location.href = '../home/home.html?success=success';
     }
   });
 });

@@ -156,11 +156,18 @@ app.post('/api/upload',upload.single('image'),async(req,res)=>{
 });
 
 app.post('/api/saveProduct',async (req,res)=>{
-  const {username,arr,newPro} = req.body;
+  const {prevType,productId,username,arr,newPro} = req.body;
   try{
     let array = arr;
     type = newPro.productType;
-    array[type].push(newPro);
+    
+    if(productId!=null&&prevType!=null){
+      array[prevType] = array[prevType].filter(p=>p._id!=productId);
+      array[type].push({...newPro, productId:productId});
+      console.log(array);
+    }
+    else
+      array[type].push(newPro);
 
     if(!username) return res.status(400).json({success : false,reply : "where is the username ??"});
     
@@ -174,6 +181,12 @@ app.post('/api/saveProduct',async (req,res)=>{
     
     //update product
     if(Product){
+      if(prevType!=type)
+        await Product.findOneAndUpdate(
+          {username},
+          {[prevType]: array[prevType]}
+        )
+
       await Product.findOneAndUpdate(
         {username},
         {[newPro.productType]: array[newPro.productType]}
@@ -185,6 +198,28 @@ app.post('/api/saveProduct',async (req,res)=>{
   catch (err){
     console.error(err);
     res.status(500).json(err);
+  }
+});
+
+app.post('/api/deleteProduct',async(req,res)=>{
+  // console.log('Delete product request received');
+  const {username,arr,productType} = req.body;
+  // console.log(arr);
+  try{
+    const product = await Product.findOne({username});
+    if(!username) return res.status(400).json({success : false,reply : "where is the username ??"});
+    if(!product){
+      return res.status(400).json({success:false});
+    }
+    await Product.findOneAndDelete(
+      {username},
+      {[productType]: arr[productType]}
+    )
+    return res.json({success: true});
+  }
+  catch(err){
+    console.error(err);
+    return res.status(500).json({success:false});
   }
 });
 

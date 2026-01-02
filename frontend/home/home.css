@@ -1,0 +1,37 @@
+.success-message-box{
+  position: fixed;
+  width: 100%;
+  display: none;
+  justify-content: flex-end;
+  padding: 0px 20px;
+  transition: all 0.3s ease-in-out;
+}
+.success-message{
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #ee0653;
+  color: white;
+  font-family: "league Spartan", sans-serif;
+  font-size: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease-in-out;
+  animation: message 4s linear;
+  cursor: pointer;
+}
+
+@keyframes message {
+  0%{
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}

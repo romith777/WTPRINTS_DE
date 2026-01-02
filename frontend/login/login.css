@@ -17,12 +17,63 @@ a:checked{
     text-decoration: none;
 }
 
-h1{
+h1,h3{
     font-family: "League Spartan", sans-serif;
 }
 
 p{
     font-family: "League Spartan", sans-serif;
+}
+
+/* Loader */
+.filter-blur{
+    filter: blur(10px);
+}
+
+.loader-wrapper{
+    visibility: visible;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0.95;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-inner{
+    position: relative;
+    font-family: "Exo 2", sans-serif;
+    color: #ee0652;
+    font-size: clamp(50px, 10vw, 120px);
+    font-weight: 700;
+}
+
+.loader-in-line::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #ee0652;
+    bottom: -10px;
+    left: 0;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
 }
 
 /* Main Layout */

@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  window.addEventListener("load", function() {
+    document.querySelector(".loader-wrapper").style.display = "none";
+    document.querySelector(".filter-blur").classList.remove("filter-blur");
+  });
+
   if(!localStorage.getItem('loginToken'))
     window.location.href = '../login/login.html';
 

@@ -72,17 +72,17 @@
           <div class="product-data">
             <form action="/addProduct" method="post" class="productForm">
               <h2>Name:</h2>
-              <input type="text" placeholder="Name"name="name" id="name" value="Test Tee" required>
+              <input type="text" placeholder="Name"name="name" id="name" required>
               <h2>Brand Name:</h2>
               <input type="text" id="brandName" name="brandName" readonly>
               <div class="description-section">
                 <h2>Description:</h2>
                 <button class="ask-ai-button"><img src="../../assets/ai-logo.png"><p>Ask AI</p></button>
               </div>
-              <textarea id="description" name="description" rows="10" cols="50" value="This is Test Tee" placeholder="Product Description (Max 400 char)" maxlength="400"></textarea>
+              <textarea id="description" name="description" rows="10" cols="50" placeholder="Product Description (Max 400 char)" maxlength="400" required></textarea>
               <div class="price-section">
                 <h2>Prize $:</h2>
-                <input type="number" placeholder="$" id="price" name="price" value="999" required>
+                <input type="number" placeholder="$" id="price" name="price" required>
               </div>
               <div class="type-section">
                 <h2>Type:</h2>

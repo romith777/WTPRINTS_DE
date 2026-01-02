@@ -5,6 +5,20 @@ let userProducts = [];
 let totalProducts = 0;
 
 document.addEventListener('DOMContentLoaded',()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    let success = urlParams.get('success');
+
+    if(success){
+        document.querySelector('.success-message-box').style.display = 'flex';
+        setTimeout(()=>{
+            document.querySelector('.success-message-box').style.display = 'none';
+        },4000)
+    }
+
+    document.querySelector('.success-message').addEventListener('click',()=>{
+        document.querySelector('.success-message-box').style.display = 'none';
+    });
+
     if(!localStorage.getItem('loginToken')){
         window.location.href = '../login/login.html';
     }
@@ -97,22 +111,22 @@ document.addEventListener('DOMContentLoaded',()=>{
         for(let i in product){
             totalProducts++;
             innerHTML+=`
-                <div class="browse-card">
-                    <div class="browse-card-img">
-                        <a href="#" style="cursor: pointer;" onclick="storeProduct('${product.id}')">
-                            <img src="${product[i].image[0]}" alt="${product[i].name}">
-                        </a>
-                    </div>
-                    <div class="browse-card-information">
-                        <div class="browse-card-information-area">
-                            <div class="browse-card-information-area-text">
-                                <p class="browse-card-information-text">${product[i].brandName}</p>
-                                <p class="browse-card-information-text">${product[i].about}</p>
-                                <p class="browse-card-information-text">Price: $<span class="browse-card-information-price">${formatCurrency(product[i].priceCents)}</span></p>
-                            </div>
+            <div class="browse-card")>
+                <div class="browse-card-img">
+                    <a href="../productSinglePage/productSinglePage.html?id=${product[i]._id}&type=${product[i].productType}" style="cursor: pointer;" >
+                        <img src="${product[i].image[0]}" alt="${product[i].name}">
+                    </a>
+                </div>
+                <div class="browse-card-information">
+                    <div class="browse-card-information-area">
+                        <div class="browse-card-information-area-text">
+                            <p class="browse-card-information-text">${product[i].brandName}</p>
+                            <p class="browse-card-information-text">${product[i].about}</p>
+                            <p class="browse-card-information-text">Price: $<span class="browse-card-information-price">${formatCurrency(product[i].priceCents)}</span></p>
                         </div>
                     </div>
                 </div>
+            </div>
             `;
         }
         return innerHTML;
@@ -144,5 +158,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             return;
         }
         document.querySelector(".collection").innerHTML = '<p class="no-products">No products added yet.</p>';
+
     }
 });
