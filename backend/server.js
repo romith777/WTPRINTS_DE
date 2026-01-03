@@ -12,10 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Static files
-app.use('/assets', express.static(path.join(__dirname, '../assets')));
-app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
-app.use(express.static(path.join(__dirname, '../frontend/home')));
+// Serve static files from parent directory (root)
+app.use(express.static(path.join(__dirname, '..')));
 
 let cachedDb = null;
 
@@ -64,10 +62,6 @@ const User = mongoose.models.User || mongoose.model('User', userSchema);
 const Product = require('./models/productSchema.js');
 
 // Routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/home/home.html'));
-});
-
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'ok', 
@@ -144,7 +138,6 @@ app.get('/api/products/:username', async (req, res) => {
 
 app.post('/api/upload', upload.single('image'), async(req, res) => {
   try {
-    // Convert buffer to base64 for cloudinary upload
     const b64 = Buffer.from(req.file.buffer).toString('base64');
     const dataURI = `data:${req.file.mimetype};base64,${b64}`;
     
@@ -212,23 +205,6 @@ app.post('/api/deleteProduct', async(req, res) => {
     console.error(err);
     return res.status(500).json({success: false});
   }
-});
-
-// Serve specific HTML pages
-app.get('/login/login.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login/login.html'));
-});
-
-app.get('/user/user.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/user/user.html'));
-});
-
-app.get('/productSinglePage/productSinglePage.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/productSinglePage/productSinglePage.html'));
-});
-
-app.get('/view/view.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/view/view.html'));
 });
 
 // Don't listen in production
