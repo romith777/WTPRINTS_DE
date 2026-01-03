@@ -2,10 +2,10 @@
   "version": 2,
   "builds": [
     { "src": "backend/server.js", "use": "@vercel/node" },
-    { "src": "**", "use": "@vercel/static" }
+    { "src": "", "use": "@vercel/static" }
   ],
   "routes": [
-    {"src": "/", "dest": "/home/index.html" },
+    {"src": "/", "dest": "/home/home.html" },
     { "src": "/health", "dest": "backend/server.js" },
     { "src": "/products", "dest": "backend/server.js" },
     { "src": "/signup", "dest": "backend/server.js" },
@@ -13,6 +13,7 @@
     { "src": "/api/products(.*)", "dest": "backend/server.js" },
     { "src": "/api/upload", "dest": "backend/server.js" },
     { "src": "/api/saveProduct", "dest": "backend/server.js" },
-    { "src": "/api/deleteProduct", "dest": "backend/server.js" }
+    { "src": "/api/deleteProduct", "dest": "backend/server.js" },
+    { "src": "/(.*)", "dest": "$1" }
   ]
 }
