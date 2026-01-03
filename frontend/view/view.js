@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   
   document.querySelector('.product-data form #brandName').value = wt_user.username;
   if(!newProduct){
+    document.querySelector('.add-product-text').innerHTML = "Edit the Product of your Collection"
     currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
     const formdata = document.querySelector('.product-data form');
     formdata.name.value = currentProduct.name;
@@ -89,7 +90,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const result = await res.json();
 
     if(result.success === true ){
-      alert('Product saved');
       localStorage.removeItem('currentProduct');
       window.location.href = '../home/home.html?success=success';
     }

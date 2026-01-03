@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <div class="browse-card-information">
                     <div class="browse-card-information-area">
                         <div class="browse-card-information-area-text">
-                            <p class="browse-card-information-text">${product[i].brandName}</p>
+                            <p class="browse-card-information-text">${product[i].name}</p>
                             <p class="browse-card-information-text">${product[i].about}</p>
                             <p class="browse-card-information-text">Price: $<span class="browse-card-information-price">${formatCurrency(product[i].priceCents)}</span></p>
                         </div>

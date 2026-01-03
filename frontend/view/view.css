@@ -58,6 +58,9 @@
   padding: 5px 5px;
   border-radius: 10px;
   border: 2px solid #ee0652;
+  font-size: 20px;
+  font-family: "league Spartan", sans-serif;
+  width: 75%;
 }
 .product-data form .product-submit{
   align-self: center;

@@ -44,7 +44,7 @@ async function deleteProductConfirm(){
         if(res.success){
             localStorage.removeItem('currentProduct');
             localStorage.setItem('userProducts',JSON.stringify(allProducts));
-            window.location.href = '../home/home.html';
+            window.location.href = '../home/home.html?success=success';
         }
     }
     catch (err){
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                               <img src="${product.image[0]}" alt="${product.name}">
                           </div>
                           <div class="related-product-info">
-                              <h4>${product.brandName}</h4>
+                              <h4>${product.name}</h4>
                               <p>${product.about}</p>
                               <p class="related-product-price">$${formatCurrency(product.priceCents)}</p>
                           </div>

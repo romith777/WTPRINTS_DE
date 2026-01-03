@@ -211,7 +211,7 @@ app.post('/api/deleteProduct',async(req,res)=>{
     if(!product){
       return res.status(400).json({success:false});
     }
-    await Product.findOneAndDelete(
+    await Product.findOneAndUpdate(
       {username},
       {[productType]: arr[productType]}
     )
@@ -223,8 +223,8 @@ app.post('/api/deleteProduct',async(req,res)=>{
   }
 });
 
-app.listen(5501, ()=>{
-  console.log("Server running on port 5500");
+app.listen(5502, ()=>{
+  console.log("Server running on port 5502");
 });
 
 module.exports = app;
