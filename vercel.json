@@ -1,19 +1,46 @@
 {
   "version": 2,
   "builds": [
-    { "src": "backend/server.js", "use": "@vercel/node" },
-    { "src": "**", "use": "@vercel/static" }
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
   ],
   "routes": [
-    {"src": "/", "dest": "/home/home.html" },
-    { "src": "/health", "dest": "backend/server.js" },
-    { "src": "/products", "dest": "backend/server.js" },
-    { "src": "/signup", "dest": "backend/server.js" },
-    { "src": "/login", "dest": "backend/server.js" },
-    { "src": "/api/products(.*)", "dest": "backend/server.js" },
-    { "src": "/api/upload", "dest": "backend/server.js" },
-    { "src": "/api/saveProduct", "dest": "backend/server.js" },
-    { "src": "/api/deleteProduct", "dest": "backend/server.js" },
-    { "src": "/(.*)", "dest": "$1" }
-  ]
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/login",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/signup",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/health",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/home/home.html"
+    },
+    {
+      "src": "/home",
+      "dest": "/frontend/home/home.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
