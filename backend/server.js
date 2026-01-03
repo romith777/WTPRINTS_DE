@@ -78,9 +78,9 @@ app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 app.use(express.static(path.join(__dirname, '../frontend/home')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/home/home.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../frontend/home/home.html'));
+// });
 
 // Health check
 app.get('/health', (req, res) => {
