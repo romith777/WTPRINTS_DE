@@ -214,14 +214,21 @@ app.post('/api/deleteProduct', async(req, res) => {
   }
 });
 
-// Serve all HTML files from frontend folder
-app.get('/*.html', (req, res) => {
-  const filePath = path.join(__dirname, '../frontend', req.path);
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      res.status(404).send('Page not found');
-    }
-  });
+// Serve specific HTML pages
+app.get('/login/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/login/login.html'));
+});
+
+app.get('/user/user.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/user/user.html'));
+});
+
+app.get('/productSinglePage/productSinglePage.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/productSinglePage/productSinglePage.html'));
+});
+
+app.get('/view/view.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/view/view.html'));
 });
 
 // Don't listen in production
