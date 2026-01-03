@@ -13,7 +13,6 @@
     { "src": "/api/products(.*)", "dest": "backend/server.js" },
     { "src": "/api/upload", "dest": "backend/server.js" },
     { "src": "/api/saveProduct", "dest": "backend/server.js" },
-    { "src": "/api/deleteProduct", "dest": "backend/server.js" },
-    { "src": "/(.*)", "dest": "$1" }
+    { "src": "/api/deleteProduct", "dest": "backend/server.js" }
   ]
 }
