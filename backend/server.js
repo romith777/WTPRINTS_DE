@@ -74,7 +74,8 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from parent directory (root folder)
-app.use(express.static(path.join(__dirname, '..')));
+app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend/home')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/home/home.html'));
