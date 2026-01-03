@@ -144,9 +144,14 @@ app.get('/api/products/:username', async (req, res) => {
 
 app.post('/api/upload', upload.single('image'), async(req, res) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
+    // Convert buffer to base64 for cloudinary upload
+    const b64 = Buffer.from(req.file.buffer).toString('base64');
+    const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+    
+    const result = await cloudinary.uploader.upload(dataURI);
     res.json({ url: result.secure_url });
   } catch (err) {
+    console.error('Upload error:', err);
     res.status(500).json(err);
   }
 });
@@ -207,6 +212,16 @@ app.post('/api/deleteProduct', async(req, res) => {
     console.error(err);
     return res.status(500).json({success: false});
   }
+});
+
+// Serve all HTML files from frontend folder
+app.get('/*.html', (req, res) => {
+  const filePath = path.join(__dirname, '../frontend', req.path);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      res.status(404).send('Page not found');
+    }
+  });
 });
 
 // Don't listen in production
