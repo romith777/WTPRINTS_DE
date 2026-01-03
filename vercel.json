@@ -5,7 +5,7 @@
     { "src": "**", "use": "@vercel/static" }
   ],
   "routes": [
-    {"src": "/", "dest": "/home/index.html" },
+    {"src": "/", "dest": "frontend/home/index.html" },
     { "src": "/health", "dest": "backend/server.js" },
     { "src": "/products", "dest": "backend/server.js" },
     { "src": "/signup", "dest": "backend/server.js" },
