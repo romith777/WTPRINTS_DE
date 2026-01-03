@@ -223,8 +223,11 @@ app.post('/api/deleteProduct',async(req,res)=>{
   }
 });
 
-app.listen(5502, ()=>{
-  console.log("Server running on port 5502");
-});
+// Only listen locally
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT, () => {
+    console.log(`Server running on http://localhost:${process.env.PORT}`);
+  });
+}
 
 module.exports = app;
