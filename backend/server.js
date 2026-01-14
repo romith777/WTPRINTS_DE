@@ -79,9 +79,9 @@ app.post("/login", async (req, res) => {
     if (!username || !password) return res.status(400).json({status: 'error'});
     
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const user = emailRegex.test(username)
-      ? await User.findOne({ email: username })
-      : await User.findOne({ username });
+    const user = (await User.findOne({ username }))
+      ? await User.findOne({ username })
+      : await User.findOne({ email: username });
       
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.json({ status: 'nouser' });
