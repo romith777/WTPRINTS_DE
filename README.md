@@ -1,4 +1,4 @@
-## WTPRINTS-DE: Seller Management & Sync Platform
+## WTPRINTS-DE: Seller Management Full Stack - https://wtprints-de.vercel.app/
 
 **WTPRINTS-DE** is the **seller-side application** of the WTPRINTS e-commerce platform.  
 It is built using **HTML, CSS, JavaScript (Frontend)** and **Node.js with Express & MongoDB (Backend)**.
