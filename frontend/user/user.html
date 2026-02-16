@@ -22,13 +22,17 @@
     <header>
       <a href="../home/home.html"><div class="logo">WTPRINTS-DE</div></a>
       <nav>
-        <a href="../index.html">Home</a>
-        <a href="../product_pages/productsPage.html">Products</a>
-        <a href="../cart/cart.html">Cart</a>
-        <a href="../favouritesPage/favPage.html">Favorites</a>
+        <a href="../home/home.html">Home</a>
+        <a href="../home/home.html">Products</a>
+        <a href="../analytics/analytics.html">Analytics</a>
       </nav>
     </header>
-
+    <div class="logout-msg hidden">
+      <div class="logout-box">
+        <div class="logout-text">Are You Sure You Wanna Logout ?</div>
+        <div class="logout-option"><div class="yes">Yes</div><div class="no">No</div></div>
+      </div>
+    </div>
     <main>
       <div class="account-wrapper">
         <aside class="sidebar">
@@ -40,8 +44,8 @@
           <nav class="side-menu">
             <a class="menu-item active" href="#" data-section="overview">Account</a>
             <a class="menu-item" href="#" data-section="change-password">Change Password</a>
-            <a class="menu-item" href="#" data-section="orders">Analytics</a>
-            <a class="menu-item" href="../cart/cart.html">Products</a>
+            <!-- <a class="menu-item" href="#" data-section="orders">Analytics</a> -->
+            <!-- <a class="menu-item" href="../cart/cart.html">Products</a> -->
           </nav>
           
           <button class="logout-btn" id="logoutBtn">Logout</button>
@@ -67,7 +71,7 @@
             <div class="account-fields">
               <div class="field">
                 <label class="field-label">Brand Name</label>
-                <div class="field-value" id="display-name">Loading...</div>
+                  <div class="field-value" id="display-name">Loading...</div>
               </div>
 
               <div class="field">
@@ -116,7 +120,7 @@
           </div>
 
           <!-- ORDERS SECTION -->
-          <div class="content-section" id="orders-section">
+          <!-- <div class="content-section" id="orders-section">
             <h1 class="account-title">My Orders</h1>
             <p class="account-sub">View and track your order history</p>
 
@@ -125,7 +129,7 @@
               <p class="empty-text">You haven't placed any orders yet</p>
               <a href="../product_pages/productsPage.html" class="shop-now-btn">Start Shopping</a>
             </div>
-          </div>
+          </div> -->
         </section>
       </div>
     </main>

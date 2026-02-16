@@ -12,6 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use(cors({
+  origin: "http://localhost:5502"
+}));
+
 // Serve static files from parent directory (root)
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -207,11 +211,32 @@ app.post('/api/deleteProduct', async(req, res) => {
   }
 });
 
+//analytics
+const Diagnostics = require('./models/diagnosticsSchema.js');
+
+app.get('/api/diagnostics/:username',async(req,res)=>{
+  try{
+    const diagnosticsData = Diagnostics ? await Diagnostics.findOne({username: req.params.username}) : null;
+    res.json({
+      tees: diagnosticsData?.tees || [],
+      hoodies: diagnosticsData?.hoodies || [],
+      cargos: diagnosticsData?.cargos || [],
+      shirts: diagnosticsData?.shirts || [],
+      jeans: diagnosticsData?.jeans || [],
+      joggers: diagnosticsData?.joggers || []
+    });
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json({status: 'error'});
+  }
+});
+
 // Don't listen in production
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  app.listen(5502, () => {
+    console.log(`Server running on http://localhost:5000`);
   });
 }
 
