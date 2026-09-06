@@ -3,23 +3,36 @@ import React, { createContext, useState, useEffect } from 'react';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('de_token') || '');
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('de_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem('token', token);
-      // TODO: Fetch user details via token validation
+      localStorage.setItem('de_token', token);
     } else {
-      localStorage.removeItem('token');
+      localStorage.removeItem('de_token');
+      localStorage.removeItem('de_user');
       setUser(null);
     }
   }, [token]);
 
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('de_user', JSON.stringify(user));
+    }
+  }, [user]);
+
   const login = (newToken, userData) => {
     setToken(newToken);
-    if(userData) setUser(userData);
+    if (userData) setUser(userData);
   };
 
   const logout = () => {
@@ -35,7 +48,7 @@ const StoreContextProvider = (props) => {
     login,
     logout,
     isLoading,
-    setIsLoading
+    setIsLoading,
   };
 
   return (

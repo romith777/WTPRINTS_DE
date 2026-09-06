@@ -1,0 +1,371 @@
+/* Dashboard.css */
+
+.dash-wrapper {
+  padding: 150px 28px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Header */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dash-title {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: var(--font-heading, 'Syne', sans-serif);
+  letter-spacing: 0;
+  margin-bottom: 6px;
+}
+
+.dash-sub {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.dash-view-orders-btn {
+  padding: 10px 22px;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.dash-view-orders-btn:hover {
+  background: #333;
+  color: white;
+}
+
+/* Top stats grid */
+.dash-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.dash-stat-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dash-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9ca3af;
+}
+
+.dash-stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a1a;
+  font-family: var(--font-heading, 'Syne', sans-serif);
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.dash-stat-sub {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Body layout */
+.dash-body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Section card */
+.dash-section {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.dash-right-col .dash-section:last-child {
+  margin-bottom: 0;
+}
+
+.dash-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dash-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: var(--font-heading, 'Syne', sans-serif);
+  letter-spacing: 0;
+}
+
+.dash-section-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ee0652;
+}
+
+/* Recent Orders Table */
+.dash-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dash-order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dash-order-row:last-child {
+  border-bottom: none;
+}
+
+.skeleton-row {
+  justify-content: space-between;
+}
+
+.dash-order-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dash-order-id {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-family: var(--font-heading, 'Syne', sans-serif);
+}
+
+.dash-order-email {
+  font-size: 12px;
+  color: #9ca3af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.dash-order-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.dash-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-order-status {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.dash-order-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+.dash-order-date {
+  font-size: 12px;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* Status breakdown */
+.dash-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dash-status-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dash-status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dash-status-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.dash-status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 18px;
+}
+
+.dash-status-bar {
+  height: 6px;
+  border-radius: 99px;
+  min-width: 4px;
+  max-width: 80%;
+  transition: width 0.4s ease;
+}
+
+.dash-status-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-left: auto;
+}
+
+/* Top products */
+.dash-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dash-product-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dash-product-row:last-child {
+  border-bottom: none;
+}
+
+.dash-product-rank {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.dash-product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash-product-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dash-product-sold {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.dash-product-revenue {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ee0652;
+  white-space: nowrap;
+}
+
+/* Empty state */
+.dash-empty {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.dash-empty-text {
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+/* Skeleton */
+.skeleton-line {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e9eaec 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-body { grid-template-columns: 1fr; }
+  .dash-right-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .dash-right-col .dash-section { margin-bottom: 0; }
+}
+
+@media (max-width: 768px) {
+  .dash-wrapper { padding-top: 130px; padding-left: 16px; padding-right: 16px; }
+  .dash-right-col { grid-template-columns: 1fr; }
+  .dash-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .dash-stat-value { font-size: 22px; }
+  .dash-order-right { gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  .dash-stats-grid { grid-template-columns: 1fr; }
+}

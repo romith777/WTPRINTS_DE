@@ -48,24 +48,23 @@ function Account() {
 
           <nav className="side-menu">
             {[
-              { id: 'overview',         label: 'My Account',       icon: '👤' },
-              { id: 'change-password',  label: 'Change Password',  icon: '🔒' },
-            ].map(({ id, label, icon }) => (
+              { id: 'overview',        label: 'My Account'      },
+              { id: 'change-password', label: 'Change Password' },
+            ].map(({ id, label }) => (
               <button
                 key={id}
                 className={`menu-item${activeTab === id ? ' active' : ''}`}
                 onClick={() => setActiveTab(id)}
               >
-                <span className="menu-icon">{icon}</span>
                 {label}
               </button>
             ))}
 
             <Link to="/orders" className="menu-item menu-item-link">
-              <span className="menu-icon">📦</span>
               My Orders
             </Link>
           </nav>
+
 
           <button className="logout-btn" onClick={handleLogout}>Sign Out</button>
         </aside>
@@ -83,24 +82,22 @@ function Account() {
 
               <div className="stats-grid">
                 <div className="stat-card">
-                  <div className="stat-icon">📦</div>
                   <div className="stat-label">Total Orders</div>
                   <div className="stat-value">—</div>
                   <div className="stat-hint"><Link to="/orders">View all →</Link></div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-icon">🛍️</div>
                   <div className="stat-label">Total Products</div>
                   <div className="stat-value">—</div>
                   <div className="stat-hint"><Link to="/">Manage →</Link></div>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-icon">⭐</div>
                   <div className="stat-label">Account Status</div>
                   <div className="stat-value stat-active">Active</div>
                   <div className="stat-hint">Brand Partner</div>
                 </div>
               </div>
+
 
               <div className="account-fields">
                 <div className="field">

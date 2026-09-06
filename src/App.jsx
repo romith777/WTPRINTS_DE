@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 
+import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Account from './pages/Account';
@@ -26,16 +27,20 @@ function App() {
             fontSize: '14px',
             padding: '14px 20px',
             fontWeight: '600',
-            background: '#111',
+            background: '#1a1a1a',
             color: '#fff',
-            borderRadius: '12px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+            borderRadius: '10px',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
             cursor: 'pointer',
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Inter', -apple-system, sans-serif",
+            letterSpacing: '0',
           },
           success: {
             iconTheme: { primary: '#ee0652', secondary: '#fff' },
-          }
+          },
+          error: {
+            iconTheme: { primary: '#ef4444', secondary: '#fff' },
+          },
         }}
       >
         {(t) => (
@@ -49,11 +54,12 @@ function App() {
       {!isLoginPage && <Navbar />}
 
       <Routes>
-        <Route path="/"        element={token ? <Home />    : <Navigate to="/login" />} />
-        <Route path="/login"   element={<Login />} />
-        <Route path="/account" element={token ? <Account /> : <Navigate to="/login" />} />
-        <Route path="/orders"  element={token ? <Orders />  : <Navigate to="/login" />} />
-        <Route path="*"        element={<Navigate to="/" replace />} />
+        <Route path="/"          element={token ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="/products"  element={token ? <Home />      : <Navigate to="/login" />} />
+        <Route path="/orders"    element={token ? <Orders />    : <Navigate to="/login" />} />
+        <Route path="/account"   element={token ? <Account />   : <Navigate to="/login" />} />
+        <Route path="/login"     element={<Login />} />
+        <Route path="*"          element={<Navigate to="/" replace />} />
       </Routes>
 
       {!isLoginPage && <Footer />}

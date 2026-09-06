@@ -8,10 +8,10 @@
 :root {
     --primary: #ee0652;
     --primary-dark: #c00545;
-    --bg-light: #f8f8f8;
-    --text-dark: #111;
-    --text-muted: #666;
-    --border: #e5e5e5;
+    --bg-light: #f5f5f7;
+    --text-dark: #1a1a1a;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-heading: 'Syne', 'Inter', sans-serif;
 }
@@ -19,26 +19,29 @@
 body {
     font-family: var(--font-body);
     color: var(--text-dark);
-    background: #fafafa;
+    background: #f7f7f8;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
-a{
+a {
     color: black;
-    background-color: none;
     text-decoration: none;
     -webkit-user-drag: none;
     cursor: pointer;
 }
 
-a:checked{
-    background-color: none;
+a:checked {
     text-decoration: none;
 }
 
 h1, h2, h3 {
     font-family: var(--font-heading);
     font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
 }
 
 p, label, input, button, select, textarea {
@@ -75,9 +78,9 @@ p, label, input, button, select, textarea {
 
 .loader-brand {
     font-family: var(--font-heading);
-    font-size: clamp(36px, 8vw, 90px);
+    font-size: clamp(32px, 7vw, 72px);
     font-weight: 800;
-    letter-spacing: -2px;
+    letter-spacing: 1px;
     color: white;
 }
 
@@ -232,31 +235,79 @@ input:focus{
 }
 
 /* Nav components */
-.nav-components{
+.nav-components {
     display: flex;
     align-items: center;
-    gap: clamp(10px, 2vw, 25px);
-    flex-wrap: wrap;
+    gap: 4px;
 }
 
-.nav-components > a{
-    padding: 8px 12px;
+.nav-link {
+    padding: 8px 14px;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: var(--font-body);
 }
 
-.nav-components > a:hover{
-    background-color: #f5f5f5;
+.nav-link:hover {
+    background: #f3f4f6;
+    color: var(--text-dark);
 }
 
-.nav-components div{
-    align-items: center;
+.nav-link.active {
+    background: #f3f4f6;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Account pill */
+.nav-account-pill {
     display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 6px;
+    border-radius: 99px;
+    border: 1.5px solid var(--border);
+    background: white;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
 }
 
-.nav-components div p{
-    font-family: "League Spartan", sans-serif;
-    font-size: clamp(13px, 1.5vw, 16px);
+.nav-account-pill:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.nav-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+}
+
+.nav-avatar-placeholder {
+    background: #e5e7eb;
+    color: #9ca3af;
+}
+
+.nav-username {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-family: var(--font-body);
     white-space: nowrap;
 }
 
