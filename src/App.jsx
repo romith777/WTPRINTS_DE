@@ -51,6 +51,7 @@ function App() {
         <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={token ? <Account /> : <Navigate to="/login" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       
       <Footer />
