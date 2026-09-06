@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('logoutBtn').addEventListener('click',()=>{
     document.querySelector('.logout-msg').classList.remove('hidden');
     document.querySelector('.logout-msg').classList.add('active');
-    document.querySelector('main').style.filter='blur(3px)';
+    document.querySelector('main').style.filter='blur(5px)';
   });
   document.querySelector('.logout-msg .yes').addEventListener('click',()=>{
     document.querySelector('.logout-msg').classList.remove('active');
