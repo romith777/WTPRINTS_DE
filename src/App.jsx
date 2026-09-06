@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster, ToastBar, toast } from 'react-hot-toast';
 import { StoreContext } from './context/StoreContext';
 import Navbar from './components/Navbar';
@@ -12,6 +12,8 @@ import Account from './pages/Account';
 
 function App() {
   const { isLoading, token } = useContext(StoreContext);
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
 
   return (
     <>
@@ -45,7 +47,7 @@ function App() {
       </Toaster>
 
       <Loader isLoading={isLoading} />
-      <Navbar />
+      {!isLoginPage && <Navbar />}
 
       <Routes>
         <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
@@ -54,7 +56,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       
-      <Footer />
+      {!isLoginPage && <Footer />}
     </>
   );
 }
