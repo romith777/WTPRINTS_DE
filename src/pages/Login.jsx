@@ -25,36 +25,28 @@ function Login() {
   const onLogin = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    
-    // We will hook this up to the real backend later
     try {
-      /*
-      let newUrl = "/api/login";
-      if (currState === "Signup") newUrl = "/api/signup";
-      const response = await axios.post(newUrl, data);
-      
-      if (response.data.success) {
+      const endpoint = currState === 'Login' ? '/api/login' : '/api/signup';
+      const response = await axios.post(endpoint, data);
+
+      if (response.data.status === 'success') {
         login(response.data.token, response.data.user);
-        toast.success(currState === "Login" ? "Logged in successfully" : "Signup successful");
+        toast.success(currState === 'Login' ? 'Welcome back!' : 'Account created! Welcome.');
         navigate('/');
+      } else if (response.data.status === 'nouser') {
+        toast.error('Invalid username or password');
+      } else if (response.data.status === 'exists') {
+        toast.error('Username or email already exists');
       } else {
-        toast.error(response.data.message || "Error occurred");
+        toast.error(response.data.message || 'Something went wrong');
       }
-      */
-      
-      // Mock login for now
-      setTimeout(() => {
-        setIsLoading(false);
-        login('mock-token-123', { username: data.username || "Seller" });
-        toast.success(`${currState} successful!`);
-        navigate('/');
-      }, 1000);
-      
     } catch (error) {
+      toast.error(error.response?.data?.message || `${currState} failed. Please try again.`);
+    } finally {
       setIsLoading(false);
-      toast.error(error.response?.data?.message || `Error during ${currState}`);
     }
   };
+
 
   return (
     <div className="login-body-information">

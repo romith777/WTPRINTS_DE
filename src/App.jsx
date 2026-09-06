@@ -9,6 +9,7 @@ import Loader from './components/Loader';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Account from './pages/Account';
+import Orders from './pages/Orders';
 
 function App() {
   const { isLoading, token } = useContext(StoreContext);
@@ -17,27 +18,25 @@ function App() {
 
   return (
     <>
-      <Toaster 
-        position="top-right" 
-        toastOptions={{ 
+      <Toaster
+        position="top-right"
+        toastOptions={{
           duration: 3000,
-          style: { 
-            fontSize: '16px', 
-            padding: '16px 24px',
-            fontWeight: 'bold',
+          style: {
+            fontSize: '14px',
+            padding: '14px 20px',
+            fontWeight: '600',
             background: '#111',
             color: '#fff',
             borderRadius: '12px',
             boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            fontFamily: "'Inter', sans-serif",
           },
           success: {
-            iconTheme: {
-              primary: '#ee0652',
-              secondary: '#fff',
-            },
+            iconTheme: { primary: '#ee0652', secondary: '#fff' },
           }
-        }} 
+        }}
       >
         {(t) => (
           <div onClick={() => toast.dismiss(t.id)}>
@@ -50,12 +49,13 @@ function App() {
       {!isLoginPage && <Navbar />}
 
       <Routes>
-        <Route path="/" element={token ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/"        element={token ? <Home />    : <Navigate to="/login" />} />
+        <Route path="/login"   element={<Login />} />
         <Route path="/account" element={token ? <Account /> : <Navigate to="/login" />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/orders"  element={token ? <Orders />  : <Navigate to="/login" />} />
+        <Route path="*"        element={<Navigate to="/" replace />} />
       </Routes>
-      
+
       {!isLoginPage && <Footer />}
     </>
   );

@@ -1,7 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { StoreContext } from '../context/StoreContext';
 
 function Navbar() {
+  const { user } = useContext(StoreContext);
+  const initial = user?.username ? user.username.charAt(0).toUpperCase() : '?';
+
   return (
     <header className="navtotal">
       <div className="navbar">
@@ -13,29 +17,23 @@ function Navbar() {
         <div className="search-bar">
           <div className="search-region">
             <form action="" className="search-form" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="search your products" name="search" className="search-area" />
+              <input type="text" placeholder="Search your products..." name="search" className="search-area" />
               <button type="submit" className="search-button">
-                <img src="/assets/search-icon.png" alt="search-icon" style={{ width: '100%' }} />
+                <img src="/assets/search-icon.png" alt="search" style={{ width: '100%' }} />
               </button>
             </form>
           </div>
         </div>
         <div className="nav-components">
-          <Link to="/account">
-            <div>
-              <p style={{ fontSize: 'large' }}>My Account</p>
+          <NavLink to="/orders">
+            <div><p style={{ fontSize: 'large' }}>Orders</p></div>
+          </NavLink>
+          <NavLink to="/account">
+            <div className="nav-avatar-link">
+              <div className="nav-avatar">{initial}</div>
+              <p style={{ fontSize: 'large' }}>{user?.username || 'My Account'}</p>
             </div>
-          </Link>
-          <Link to="/credits">
-            <div>
-              <p style={{ fontSize: 'large' }}>WTCredits</p>
-            </div>
-          </Link>
-          <Link to="/contact">
-            <div>
-              <p style={{ fontSize: 'large' }}>Contact Us</p>
-            </div>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </header>

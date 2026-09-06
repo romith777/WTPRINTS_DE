@@ -1,8 +1,26 @@
-﻿*{
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     transition: all 0.3s ease;
+}
+
+:root {
+    --primary: #ee0652;
+    --primary-dark: #c00545;
+    --bg-light: #f8f8f8;
+    --text-dark: #111;
+    --text-muted: #666;
+    --border: #e5e5e5;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Syne', 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: #fafafa;
+    -webkit-font-smoothing: antialiased;
 }
 
 a{
@@ -18,71 +36,88 @@ a:checked{
     text-decoration: none;
 }
 
-h1{
-    font-family: "League Spartan", sans-serif;
-}
-
-h2{
-    font-family: "League Spartan", sans-serif;
-}
-
-h3{
-    font-family: "League Spartan", sans-serif;
-}
-
-p{
-    font-family: "League Spartan", sans-serif;
-}
-
-/* Loader */
-.filter-blur{
-    filter: blur(10px);
-}
-
-.loader-wrapper{
-    visibility: visible;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    opacity: 0.95;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader-inner{
-    position: relative;
-    font-family: "Exo 2", sans-serif;
-    color: #ee0652;
-    font-size: clamp(50px, 10vw, 120px);
+h1, h2, h3 {
+    font-family: var(--font-heading);
     font-weight: 700;
 }
 
-.loader-in-line::after{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #ee0652;
-    bottom: -10px;
-    left: 0;
-    animation: loading 1s infinite;
+p, label, input, button, select, textarea {
+    font-family: var(--font-body);
 }
 
-@keyframes loading {
-    0% {
-        width: 0;
-    }
-    50% {
-        width: 100%;
-    }
-    100% {
-        width: 0;
-    }
+/* ─────────────── LOADER ─────────────── */
+.loader-wrapper {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    animation: loaderFadeIn 0.2s ease;
+}
+
+.loader-wrapper.fade-out {
+    animation: loaderFadeOut 0.4s ease forwards;
+}
+
+@keyframes loaderFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes loaderFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; pointer-events: none; }
+}
+
+.loader-brand {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 8vw, 90px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: white;
+}
+
+.loader-brand span {
+    color: var(--primary);
+}
+
+.loader-bar-track {
+    width: clamp(200px, 40vw, 400px);
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.loader-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 99px;
+    animation: barPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes barPulse {
+    0%   { transform: translateX(-100%); }
+    50%  { transform: translateX(0%); }
+    100% { transform: translateX(100%); }
+}
+
+.loader-sub {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+}
+
+/* ─────────────── FILTER BLUR (legacy) ─────────────── */
+.filter-blur {
+    filter: blur(10px);
 }
 
 /* Header */
